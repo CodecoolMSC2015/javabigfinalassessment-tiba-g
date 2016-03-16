@@ -77,6 +77,7 @@ public class CSVDataReader extends DataReader
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
+		
 		Set<Person> resultEmployees = null;
 		if(searchType.equals(SearchType.Mandatory))
 		{
