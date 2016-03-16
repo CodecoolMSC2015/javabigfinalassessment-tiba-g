@@ -1,4 +1,4 @@
-package person.copy;
+package person;
 
 import java.util.List;
 
