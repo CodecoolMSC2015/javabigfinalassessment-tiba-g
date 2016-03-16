@@ -11,8 +11,8 @@ import java.util.Set;
 
 import person.Employee;
 import person.Person;
-import person.SearchType;
 import person.Skill;
+import servlet.SearchType;
 
 public class CSVDataReader extends DataReader
 {

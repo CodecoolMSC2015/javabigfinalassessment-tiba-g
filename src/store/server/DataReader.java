@@ -3,7 +3,7 @@ package store.server;
 import java.util.Set;
 
 import person.Person;
-import person.SearchType;
+import servlet.SearchType;
 
 public abstract class DataReader
 {

@@ -9,7 +9,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Set;
 
-import person.SearchType;
+import servlet.SearchType;
 
 public class Client
 {

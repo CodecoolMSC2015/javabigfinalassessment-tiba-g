@@ -1,4 +1,4 @@
-package person;
+package servlet;
 
 public enum SearchType
 {
