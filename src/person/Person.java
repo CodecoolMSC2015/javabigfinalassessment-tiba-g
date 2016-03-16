@@ -1,9 +1,14 @@
 package person;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Person
+public class Person implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7558914342706599481L;
 	protected String name;
 	protected String email;
 	protected List<Skill> skillset;	

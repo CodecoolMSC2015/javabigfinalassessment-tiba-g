@@ -28,7 +28,7 @@ public class CSVDataReader extends DataReader
 	public Set<Person> getPersons()
 	{
 		BufferedReader reader = null;
-		Set<Person> EmployeeSet = new HashSet<Person>();
+		Set<Person> employeeSet = new HashSet<Person>();
 		String[] searchCriterias = searchCriteria.split(";");
 		
 		try {
@@ -46,7 +46,7 @@ public class CSVDataReader extends DataReader
 			    	if(lineElements[2].equals(searchCriterias[i]))
 			    	{
 			    		Employee newEmploy = new Employee(lineElements[0], lineElements[1]);
-			    		if(!EmployeeSet.contains(newEmploy))
+			    		if(!employeeSet.contains(newEmploy))
 			    		{
 				    		List<Skill> skills = new ArrayList<Skill>();
 				    		Skill skill = new Skill(lineElements[2], lineElements[3]);
@@ -54,12 +54,12 @@ public class CSVDataReader extends DataReader
 				    		newEmploy.setSkillset(skills);
 				    		if(lineElements[5].length() > 0)
 				    			newEmploy.setSalary(Integer.valueOf(lineElements[5]));
-				    		EmployeeSet.add(newEmploy);
+				    		employeeSet.add(newEmploy);
 			    		}
 			    		else
 			    		{
 			    			Employee oldEmployee = null;
-			    			for (Person e : EmployeeSet)
+			    			for (Person e : employeeSet)
 							{
 								if(e.equals(newEmploy))
 								{
@@ -83,7 +83,7 @@ public class CSVDataReader extends DataReader
 		{
 			int number = searchCriterias.length;
 			int sum = 0;
-			for (Person person : EmployeeSet)
+			for (Person person : employeeSet)
 			{
 				for(int i = 0; i < number; i++)
 				{
@@ -106,7 +106,7 @@ public class CSVDataReader extends DataReader
 		}
 		else
 		{
-			resultEmployees = EmployeeSet;
+			resultEmployees = employeeSet;
 			return resultEmployees;
 		}
 	}

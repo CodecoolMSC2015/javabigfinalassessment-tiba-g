@@ -1,7 +1,13 @@
 package person;
 
-public class Skill
+import java.io.Serializable;
+
+public class Skill implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3059337550806103341L;
 	private String name;
 	private String description;
 	private double rate;
