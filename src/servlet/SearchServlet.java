@@ -37,15 +37,6 @@ public class SearchServlet extends HttpServlet
 		Client c = new Client(criterial, st);
 		c.start();
 		resultPersons = c.getResultPersons();
-		if(resultPersons.isEmpty())
-		{
-			out.println("asd");
-
-		}else
-		{
-			out.println("jajj Bem jo");
-
-		}
 		for (Person person : resultPersons)
 		{
 			out.println(person);
