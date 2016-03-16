@@ -9,8 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.xml.ws.RequestWrapper;
-
 import person.Employee;
 import person.Person;
 import person.SearchType;
@@ -29,7 +27,7 @@ public class CSVDataReader extends DataReader
 	public Set<Person> getPersons()
 	{
 		BufferedReader reader = null;
-		Set<Employee> resultEmployees = new HashSet<Employee>();
+		Set<Person> resultEmployees = new HashSet<Person>();
 		
 		try {
 		    File file = new File(csvFilePath);
@@ -59,11 +57,11 @@ public class CSVDataReader extends DataReader
 			    		else
 			    		{
 			    			Employee oldEmployee = null;
-			    			for (Employee e : resultEmployees)
+			    			for (Person e : resultEmployees)
 							{
 								if(e.equals(newEmploy))
 								{
-									oldEmployee = e;
+									oldEmployee = (Employee) e;
 								}
 							}
 			    			List<Skill> skills = oldEmployee.getSkillset();
@@ -78,7 +76,7 @@ public class CSVDataReader extends DataReader
 		    e.printStackTrace();
 		}
 	   
-		return null;
+		return resultEmployees;
 	}
 	
 	@Override
