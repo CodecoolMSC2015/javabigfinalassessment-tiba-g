@@ -18,7 +18,8 @@ public class PersonStoreServerSocket
 	public void start(int port)
 	{
 		ServerSocket ss = null;
-		try {
+		try 
+		{
 			ss = new ServerSocket(port);
 			Socket s = ss.accept();
 
@@ -33,7 +34,8 @@ public class PersonStoreServerSocket
 			String errorMessage;
 			store = new CSVDataReader("Documentation\\persons.csv");
 			
-			while (true) {
+			while (true) 
+			{
 				int i;
 				if ((i = ois.read()) > -1)
 				{
@@ -43,7 +45,8 @@ public class PersonStoreServerSocket
 					}
 					Object obj = ois.readObject();
 
-					if (obj instanceof String) {
+					if (obj instanceof String) 
+					{
 						try {
 							store.SetSearchCriterial((String) obj);
 							haveSearchCriterial = true;
@@ -80,7 +83,9 @@ public class PersonStoreServerSocket
 			ois.close();
 			is.close();
 			ss.close();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 			System.out.println(e);
 		}
 	}

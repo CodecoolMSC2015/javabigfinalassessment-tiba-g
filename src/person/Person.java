@@ -6,11 +6,11 @@ public class Person
 {
 	protected String name;
 	protected String email;
-	protected List<Skill> skillset;
+	protected List<Skill> skillset;	
 	
 	Person()
 	{
-	
+		
 	}
 	
 	Person(String name, String email)

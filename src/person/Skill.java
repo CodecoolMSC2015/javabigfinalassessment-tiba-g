@@ -6,7 +6,7 @@ public class Skill
 	private String description;
 	private double rate;
 	
-	Skill(String name, String description)
+	public Skill(String name, String description)
 	{
 		this.name = name;
 		this.description = description;
