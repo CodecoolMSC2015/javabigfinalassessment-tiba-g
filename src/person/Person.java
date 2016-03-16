@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Person
 {
-	public String name;
-	public String email;
-	public List<Skill> skillset;
+	protected String name;
+	protected String email;
+	protected List<Skill> skillset;
 	
 	Person()
 	{

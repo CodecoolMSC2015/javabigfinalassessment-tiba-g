@@ -2,8 +2,8 @@ package person;
 
 public class Employee extends Person
 {
-	public int salary;
-	public String jobTitle;
+	private int salary;
+	private String jobTitle;
 	
 	public int getSalary()
 	{

@@ -2,9 +2,9 @@ package person;
 
 public class Skill
 {
-	public String name;
-	public String description;
-	public double rate;
+	private String name;
+	private String description;
+	private double rate;
 	
 	Skill(String name, String description)
 	{
