@@ -9,8 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.xml.ws.RequestWrapper;
-
 import person.Employee;
 import person.Person;
 import person.SearchType;
@@ -25,11 +23,13 @@ public class CSVDataReader extends DataReader
 		this.csvFilePath = csvFilePath;
 	}
 
+	@SuppressWarnings("null")
 	@Override
 	public Set<Person> getPersons()
 	{
 		BufferedReader reader = null;
-		Set<Employee> resultEmployees = new HashSet<Employee>();
+		Set<Person> EmployeeSet = new HashSet<Person>();
+		String[] searchCriterias = searchCriteria.split(";");
 		
 		try {
 		    File file = new File(csvFilePath);
@@ -37,7 +37,6 @@ public class CSVDataReader extends DataReader
 
 		    String line;
 		    String[] lineElements;
-		    String[] searchCriterias = searchCriteria.split(",");
 		    
 		    while ((line = reader.readLine()) != null) 
 		    {	
@@ -47,23 +46,24 @@ public class CSVDataReader extends DataReader
 			    	if(lineElements[2].equals(searchCriterias[i]))
 			    	{
 			    		Employee newEmploy = new Employee(lineElements[0], lineElements[1]);
-			    		if(!resultEmployees.contains(newEmploy))
+			    		if(!EmployeeSet.contains(newEmploy))
 			    		{
 				    		List<Skill> skills = new ArrayList<Skill>();
 				    		Skill skill = new Skill(lineElements[2], lineElements[3]);
 				    		skills.add(skill);
 				    		newEmploy.setSkillset(skills);
-				    		newEmploy.setSalary(Integer.valueOf(lineElements[5]));
-				    		resultEmployees.add(newEmploy);
+				    		if(lineElements[5].length() > 0)
+				    			newEmploy.setSalary(Integer.valueOf(lineElements[5]));
+				    		EmployeeSet.add(newEmploy);
 			    		}
 			    		else
 			    		{
 			    			Employee oldEmployee = null;
-			    			for (Employee e : resultEmployees)
+			    			for (Person e : EmployeeSet)
 							{
 								if(e.equals(newEmploy))
 								{
-									oldEmployee = e;
+									oldEmployee = (Employee) e;
 								}
 							}
 			    			List<Skill> skills = oldEmployee.getSkillset();
@@ -77,8 +77,37 @@ public class CSVDataReader extends DataReader
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-	   
-		return null;
+		Set<Person> resultEmployees = null;
+		if(searchType.equals(SearchType.Mandatory))
+		{
+			int number = searchCriterias.length;
+			int sum = 0;
+			for (Person person : EmployeeSet)
+			{
+				for(int i = 0; i < number; i++)
+				{
+					for (Skill skill : person.getSkillset())
+					{
+						if(skill.equals(searchCriterias[i]))
+						{
+							sum++;
+						}
+					}
+				}
+				if(sum == number)
+				{
+					resultEmployees.add(person);
+					sum = 0;
+				}
+			}
+			
+			return resultEmployees;
+		}
+		else
+		{
+			resultEmployees = EmployeeSet;
+			return resultEmployees;
+		}
 	}
 	
 	@Override
